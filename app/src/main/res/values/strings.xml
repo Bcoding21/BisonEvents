@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">BIsonEvents</string>
+
+    <string-array name="Event1">
+        <item name="Location"> On the Yard</item>
+        <item name="Time"> 12:00 - 1:00</item>
+        <item name="Description"> Free ritas on the yard</item>
+        <item name="Title">Ritas on the yard</item>
+    </string-array>
+
+    <string-array name="Event2">
+        <item name="Location"> Mackey Building</item>
+        <item name="Time"> 6:00 - 8:00</item>
+        <item name="Description"> Come relax and watch movies</item>
+        <item name="Title"> Movie Night </item>
+    </string-array>
+
+    <string-array name="Event3">
+        <item name="Location"> Banneker</item>
+        <item name="Time"> 5:30 - 6:30</item>
+        <item name="Description"> Join us for some yoga</item>
+        <item name="Title"> Yoga </item>
+    </string-array>
+
+    <string-array name="Event4">
+        <item name="Location"> Douglas</item>
+        <item name="Time"> 7:00 - 9:00</item>
+        <item name="Description"> Let's talk about politics</item>
+        <item name="Title"> Politic Talk</item>
+    </string-array>
+
+    <string-array name="Event5">
+        <item name="Location"> Chipotle on Georgia</item>
+        <item name="Time"> Free Chipotle</item>
+        <item name="Description"> Free chipotle for Howard students. I.D.s requred</item>
+        <item name="Title"> Free the Burrito </item>
+    </string-array>
 </resources>
