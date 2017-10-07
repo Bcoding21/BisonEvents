@@ -29,7 +29,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Event> mEventsList;
-    ListView listm = (ListView) findViewById(R.id.listView);
+    ListView listm;
+    eventAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Events.add("BIGGEST PARTY");*/
 
         //ListView listm = (ListView) findViewById(R.id.listView);
-
+        listm = (ListView) findViewById(R.id.listView);
         Resources res = getResources();
         String[] event1Array = res.getStringArray(R.array.Event1);
         String[] event2Array = res.getStringArray(R.array.Event2);
@@ -62,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
             mEventsList.add(new Event(eventArray[0], eventArray[1], eventArray[3], eventArray[2]));
         }
 
-        eventAdapter adapter = new eventAdapter(this);
-        adapter.setItems(mEventsList);
-        listm.setAdapter(adapter);
+        mAdapter = new eventAdapter(this);
+        mAdapter.setItems(mEventsList);
+        listm.setAdapter(mAdapter);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     if(arr.getTitle().toLowerCase().contains(search.toLowerCase())){
                         newList.add(arr);
                     }
+                    mAdapter.setItems(newList);
+                    listm.setAdapter(mAdapter);
                     /*else{
                         Toast toast = Toast.makeText(getApplicationContext(), "nope", Toast.LENGTH_SHORT);
                         toast.show();
