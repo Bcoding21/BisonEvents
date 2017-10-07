@@ -29,7 +29,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Event> mEventsList;
-    ListView listm = (ListView) findViewById(R.id.listView);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Events.add("BIGGER PARTY");
         Events.add("BIGGEST PARTY");*/
 
-        //ListView listm = (ListView) findViewById(R.id.listView);
+        ListView listm = (ListView) findViewById(R.id.listView);
 
         Resources res = getResources();
         String[] event1Array = res.getStringArray(R.array.Event1);
