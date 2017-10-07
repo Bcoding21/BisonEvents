@@ -5,6 +5,13 @@ package com.example.brandon.bisonevents;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.id.list;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +24,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*ArrayList<String> Events = new ArrayList<>();
+        Events.add("PARTY");
+        Events.add("BIGGER PARTY");
+        Events.add("BIGGEST PARTY");*/
+
+        ListView listm = (ListView) findViewById(R.id.listView);
 
         Resources res = getResources();
         String[] event1Array = res.getStringArray(R.array.Event1);
@@ -36,5 +50,8 @@ public class MainActivity extends AppCompatActivity {
         for (String[] eventArray : eventArrayList){
             mEventsList.add(new Event(eventArray[0], eventArray[1], eventArray[3], eventArray[2]));
         }
+
+        ArrayAdapter adapter = new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, eventsList);
+        listm.setAdapter(adapter);
     }
 }
