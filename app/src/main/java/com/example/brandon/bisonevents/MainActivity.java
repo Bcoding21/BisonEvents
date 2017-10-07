@@ -1,6 +1,7 @@
 package com.example.brandon.bisonevents;
 
 
+
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private List<Event> mEventsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +32,9 @@ public class MainActivity extends AppCompatActivity {
         eventArrayList.add(event4Array);
         eventArrayList.add(event5Array);
 
-        List<Event> eventsList = new ArrayList<Event>();
+        mEventsList = new ArrayList<Event>();
         for (String[] eventArray : eventArrayList){
-            eventsList.add(new Event(eventArray[0], eventArray[1], eventArray[3], eventArray[2]));
+            mEventsList.add(new Event(eventArray[0], eventArray[1], eventArray[3], eventArray[2]));
         }
     }
-
-
 }
