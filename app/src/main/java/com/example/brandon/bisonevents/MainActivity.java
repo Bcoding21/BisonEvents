@@ -1,6 +1,8 @@
 package com.example.brandon.bisonevents;
 
 
+import android.content.Intent;
+import android.widget.Button;
 import android.widget.ListView;
 
 import android.content.res.Resources;
@@ -14,11 +16,15 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.AdapterView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 import static android.R.id.list;
 import static java.security.AccessController.getContext;
@@ -27,20 +33,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private ListView mDrawerList;
+    private ArrayAdapter<String> xAdapter;
 
-    private List<Event> mEventsList;
+
+    private static List<Event> mEventsList;
+
+    private static ListView listm;
+    private static eventAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        Button add_task = (Button) findViewById(R.id.add_task);
+        String[] osArray = { "ACM", "WHBC", "NSBE", "BLACKBURN", "CRAMPTON" };
+        xAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(xAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
+        add_task.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getBaseContext(), AddEvent.class);
+                startActivity(intent);
+            }
+
+        });
         /*ArrayList<String> Events = new ArrayList<>();
         Events.add("PARTY");
         Events.add("BIGGER PARTY");
         Events.add("BIGGEST PARTY");*/
 
-        ListView listm = (ListView) findViewById(R.id.listView);
+
+        //ListView listm = (ListView) findViewById(R.id.listView);
+        listm = (ListView) findViewById(R.id.listView);
 
         Resources res = getResources();
         String[] event1Array = res.getStringArray(R.array.Event1);
@@ -56,14 +92,20 @@ public class MainActivity extends AppCompatActivity {
         eventArrayList.add(event4Array);
         eventArrayList.add(event5Array);
 
+
+
+
         mEventsList = new ArrayList<Event>();
+
         for (String[] eventArray : eventArrayList) {
             mEventsList.add(new Event(eventArray[0], eventArray[1], eventArray[3], eventArray[2]));
         }
 
-        eventAdapter adapter = new eventAdapter(this);
-        adapter.setItems(mEventsList);
-        listm.setAdapter(adapter);
+        mAdapter = new eventAdapter(this);
+        mAdapter.setItems(mEventsList);
+        listm.setAdapter(mAdapter);
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
                     if(arr.getTitle().toLowerCase().contains(search.toLowerCase())){
                         newList.add(arr);
                     }
+                    mAdapter.setItems(newList);
+                    listm.setAdapter(mAdapter);
                     /*else{
                         Toast toast = Toast.makeText(getApplicationContext(), "nope", Toast.LENGTH_SHORT);
                         toast.show();
@@ -97,4 +141,12 @@ public class MainActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
+
+    public static void addEvent(Event newEvent){
+        mEventsList.add(newEvent);
+        mAdapter.setItems(mEventsList);
+        listm.setAdapter(mAdapter);
+    }
 }
+
+
